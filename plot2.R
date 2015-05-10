@@ -22,3 +22,14 @@ data <- powerData %>% filter(Date == "1/2/2007" | Date == "2/2/2007") %>%
         mutate(DateTime = dmy_hms(paste(Date, Time))) %>% 
         select(DateTime, c(3:9)) %>%
         mutate_each(funs(as.numeric(.)), c(2:8))
+
+#Create the graph for global active power as a function of time.
+        
+        plot(data$DateTime, data$Global_active_power, xlab = "",
+             ylab = "Global Active Power (Kilowatts)", type = "l")
+
+#Save the image as a png file
+
+        dev.copy(png, file = "plot2.png")
+        dev.off()
+
